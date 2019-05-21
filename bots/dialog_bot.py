@@ -16,6 +16,9 @@ from helpers.dialog_helper import DialogHelper
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+STATE = {
+
+}
 
 class DialogBot(ActivityHandler):
 
@@ -69,4 +72,40 @@ class DialogBot(ActivityHandler):
 
     async def on_message_activity(self, turn_context: TurnContext):
         print('LA', turn_context)
+        print(turn_context.activity)
+
+        if STATE.get('last_action') == 'propose_pension':
+
+            print(turn_context.activity.text)
+            response = create_activity_reply(
+                turn_context.activity,
+                "Thanks "
+            )
+            STATE['last_action'] = 'thanked'
+
+        else:
+            response = create_activity_reply(
+                turn_context.activity,
+                "Did you know that the goverment recently raised the deductibility limit pension funds? "
+                "You could potentially increase your deductible while saving more for your retirment."
+            )
+            response.suggested_actions = {
+                "actions": [
+                    {
+                        "title": "More Info",
+                        "type": "imBack",
+                        "value": "more_info"
+                    },
+                    {
+                        "title": "Not now",
+                        "type": "imBack",
+                        "value": "not_now"
+                    }
+                ]
+            }
+
+            STATE['last_action'] = 'propose_pension'
+
+        return await turn_context.send_activity(response)
+
         await DialogHelper.run_dialog(self.dialog, turn_context, self.conversation_state.create_property("DialogState"))
