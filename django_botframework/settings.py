@@ -25,7 +25,7 @@ SECRET_KEY = 'm+5ihoj1z*)h=q*!hbz(ho1k3!bch9ytpza&s4kcdct)!^g4!5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["chatbot.acelpb.com"]
 
 
 # Application definition
@@ -128,3 +128,11 @@ APP_PASSWORD = ""
 LUIS_APP_ID = ""
 LUIS_API_KEY = ""
 LUIS_API_HOST_NAME = ""
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'my_cache_table',
+    }
+}
