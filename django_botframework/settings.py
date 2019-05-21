@@ -121,3 +121,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+APP_ID = ""
+APP_PASSWORD = ""
+LUIS_APP_ID = ""
+LUIS_API_KEY = ""
+LUIS_API_HOST_NAME = ""

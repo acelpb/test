@@ -4,21 +4,17 @@ import asyncio
 from botbuilder.core import (BotFrameworkAdapter, BotFrameworkAdapterSettings, ConversationState, MemoryStorage,
                              UserState)
 from botbuilder.schema import (Activity)
-from flask import Flask, Response
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from bots import DialogBot
 from dialogs import MainDialog
+from django.conf import settings
 
-loop = asyncio.new_event_loop();
+loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 
-
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_object('config.DefaultConfig')
-
-SETTINGS = BotFrameworkAdapterSettings(app.config['APP_ID'], app.config['APP_PASSWORD'])
+SETTINGS = BotFrameworkAdapterSettings(settings.APP_ID, settings.APP_PASSWORD)
 ADAPTER = BotFrameworkAdapter(SETTINGS)
 
 # Create MemoryStorage, UserState and ConversationState
@@ -27,7 +23,7 @@ memory = MemoryStorage()
 user_state = UserState(memory)
 conversation_state = ConversationState(memory)
 
-dialog = MainDialog(app.config)
+dialog = MainDialog(settings)
 bot = DialogBot(conversation_state, user_state, dialog)
 
 
