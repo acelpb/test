@@ -44,6 +44,7 @@ class MessageApiView(APIView):
         auth_header = request.headers['Authorization'] if 'Authorization' in request.headers else ''
 
         async def aux_func(turn_context):
+            print(turn_context)
             loop.create_task(asyncio.wait([bot.on_turn(turn_context)]))
 
         try:

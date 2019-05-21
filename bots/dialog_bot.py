@@ -72,7 +72,7 @@ class DialogBot(ActivityHandler):
 
     async def on_message_activity(self, turn_context: TurnContext):
         print('LA', turn_context)
-        print(turn_context.activity)
+        print(turn_context.activity.text)
 
         if STATE.get('last_action') == 'propose_pension':
 
