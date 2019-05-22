@@ -25,7 +25,7 @@ SECRET_KEY = 'm+5ihoj1z*)h=q*!hbz(ho1k3!bch9ytpza&s4kcdct)!^g4!5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["chatbot.acelpb.com"]
+ALLOWED_HOSTS = ["chatbot.acelpb.com", 'localhost']
 
 
 # Application definition

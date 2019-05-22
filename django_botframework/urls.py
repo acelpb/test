@@ -21,4 +21,5 @@ from localbot import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/messages', views.MessageApiView.as_view()),
+    path('api/notify', views.PushFlowApiView.as_view())
 ]
